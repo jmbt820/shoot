@@ -6,10 +6,8 @@ using System.Collections;
 
 public class Button : MonoBehaviour {
 
-	public GameObject MainCamera; //カメラの定義
-	public EventSystem eventsystem; //イベントシステム（いろんなことに使う）の定義
-	public string standName; //現在の立ち位置
-
+	public EventSystem eventsystem; 
+	public string standName; 
 
 	// Use this for initialization
 	void Start () {
@@ -24,25 +22,25 @@ public class Button : MonoBehaviour {
 	public void turnL () {
 		switch(standName){
 		case "centerN":
-			iTween.RotateTo(GameObject.Find("MainCamera"),iTween.Hash(
+			iTween.RotateTo(GameObject.Find("Player"),iTween.Hash(
 				"x",0, "y",270, "z",0, "time", 0.4, "islocal", true
 			));
 			standName = "centerW";
 			break;
 		case "centerW":
-			iTween.RotateTo(GameObject.Find("MainCamera"),iTween.Hash(
+			iTween.RotateTo(GameObject.Find("Player"),iTween.Hash(
 				"x",0, "y",180, "z",0, "time", 0.4, "islocal", true
 			));
 			standName = "centerS";
 			break;
 		case "centerS":
-			iTween.RotateTo(GameObject.Find("MainCamera"),iTween.Hash(
+			iTween.RotateTo(GameObject.Find("Player"),iTween.Hash(
 				"x",0, "y",90, "z",0, "time", 0.4, "islocal", true
 			));
 			standName = "centerE";
 			break;
 		case "centerE":
-			iTween.RotateTo(GameObject.Find("MainCamera"),iTween.Hash(
+			iTween.RotateTo(GameObject.Find("Player"),iTween.Hash(
 				"x",0, "y",0, "z",0, "time", 0.4, "islocal", true
 			));
 			standName = "centerN";
@@ -53,30 +51,29 @@ public class Button : MonoBehaviour {
 	public void turnR () {
 		switch(standName){
 		case "centerN":
-			iTween.RotateTo(GameObject.Find("MainCamera"),iTween.Hash(
+			iTween.RotateTo(GameObject.Find("Player"),iTween.Hash(
 				"x",0, "y",90, "z",0, "time", 0.4, "islocal", true
 			));
 			standName = "centerE";
 			break;
 		case "centerW":
-			iTween.RotateTo(GameObject.Find("MainCamera"),iTween.Hash(
+			iTween.RotateTo(GameObject.Find("Player"),iTween.Hash(
 				"x",0, "y",0, "z",0, "time", 0.4, "islocal", true
 			));
 			standName = "centerN";
 			break;
 		case "centerS":
-			iTween.RotateTo(GameObject.Find("MainCamera"),iTween.Hash(
+			iTween.RotateTo(GameObject.Find("Player"),iTween.Hash(
 				"x",0, "y",270, "z",0, "time", 0.4, "islocal", true
 			));
 			standName = "centerW";
 			break;
 		case "centerE":
-			iTween.RotateTo(GameObject.Find("MainCamera"),iTween.Hash(
+			iTween.RotateTo(GameObject.Find("Player"),iTween.Hash(
 				"x",0, "y",180, "z",0, "time", 0.4, "islocal", true
 			));
 			standName = "centerS";
 			break;
 		}
-}
-
+	}
 }
