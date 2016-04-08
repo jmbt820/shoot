@@ -5,6 +5,7 @@ public class Bullet : MonoBehaviour {
 
 	float bulletSpeed = 2;
 
+
 	// Use this for initialization
 	void Start () {
 		Destroy(this.gameObject, 5);
@@ -16,7 +17,6 @@ public class Bullet : MonoBehaviour {
 
 	void OnCollisionEnter(Collision enemyCol) {
 		if(enemyCol.gameObject.layer == 9){ //layer = enemy
-			Destroy (enemyCol.gameObject);	
 			Destroy (gameObject);	
 		}
 	}
