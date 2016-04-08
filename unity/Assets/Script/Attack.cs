@@ -4,6 +4,8 @@ using System.Collections;
 public class Attack : MonoBehaviour {
 
 	public GameObject bullet;
+	public GameObject laser;
+	public GameObject missile;
 	private float interval;
 	public int attackmode;
 
@@ -26,14 +28,14 @@ public class Attack : MonoBehaviour {
 
 		case 1:
 			if (interval >= 1.0f) {
-				Instantiate (bullet, new Vector3 (transform.position.x, transform.position.y, transform.position.z), transform.rotation);
+				Instantiate (laser, new Vector3 (transform.position.x, transform.position.y, transform.position.z), transform.rotation);
 				interval = 0f;
 			}
 			break;
 
 		case 2:
 			if (interval >= 2.0f) {
-				Instantiate (bullet, new Vector3 (transform.position.x, transform.position.y, transform.position.z), transform.rotation);
+				Instantiate (missile, new Vector3 (transform.position.x, transform.position.y, transform.position.z), transform.rotation);
 				interval = 0f;
 			}
 			break;
