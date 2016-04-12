@@ -14,11 +14,9 @@ public class Bullet : MonoBehaviour {
 	void Update () {
 		transform.Translate(0, 0, bulletSpeed);
 	}
-	/*
 	void OnCollisionEnter(Collision enemyCol) {
 		if(enemyCol.gameObject.layer == 9){ //layer = enemy
-			Destroy (gameObject);	
+			Destroy (this.gameObject);	
 		}
 	}
-	*/
 }

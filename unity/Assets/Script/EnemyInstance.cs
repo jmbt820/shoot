@@ -6,19 +6,21 @@ public class EnemyInstance : MonoBehaviour {
 	public GameObject meteor;
 	public GameObject player;
 	private int angle;
-	public float interval = 3f;
+	public float interval = 2f;
 	public float radius = 100f;
-
 
 	// Use this for initialization
 	void Start () {
 		player = GameObject.Find("Player");
-		StartCoroutine ("CreateMeteor");
 	}
 		
+	public void StartMeteo(){
+		StartCoroutine ("CreateMeteor");
+	}
+
 	private IEnumerator CreateMeteor(){
 		while(true){
-		Instantiate (meteor, GetPosition (radius), transform.rotation);
+		Pool.Instantiate (meteor, GetPosition (radius), transform.rotation);
 		yield return new WaitForSeconds (interval);
 			if (!player)
 				yield break;

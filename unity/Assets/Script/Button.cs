@@ -7,12 +7,10 @@ using System.Collections;
 public class Button : MonoBehaviour {
 
 	public EventSystem eventsystem; 
-	public string standName; 
 	public int nowRotation;
 
 	// Use this for initialization
 	void Start () {
-	//	standName = "centerN"; 
 		eventsystem = GameObject.Find("EventSystem").GetComponent<EventSystem>();
 		nowRotation = 0;
 	}

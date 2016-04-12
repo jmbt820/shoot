@@ -11,6 +11,11 @@ public class GameControler : MonoBehaviour
 	private bool gameOver;
 	private int score;
 	private int life;
+	private AudioSource sound01;
+	private AudioSource sound02;
+	[SerializeField]
+	private Text _textCountdown;
+	GameObject meteor;
 
 	void Start ()
 	{
@@ -19,9 +24,14 @@ public class GameControler : MonoBehaviour
 		gameOverText.text = "";
 		score = 0;
 		life = 3;
+		AudioSource[] audioSources = GetComponents<AudioSource>();
+		sound01 = audioSources[0];
+		sound02 = audioSources[1];
 		UpdateScore ();
 		UpdateLife ();
-	//	StartCoroutine (SpawnWaves ());
+		_textCountdown.text = "";
+		StartCoroutine(CountdownCoroutine());
+
 	}
 
 	void Update ()
@@ -34,35 +44,32 @@ public class GameControler : MonoBehaviour
 		}
 	}
 
-
-	/*
-	IEnumerator SpawnWaves ()
+	IEnumerator CountdownCoroutine()
 	{
-		yield return new WaitForSeconds (startWait);
-		while (true)
-		{
-			for (int i = 0; i < hazardCount; i++)
-			{
-				GameObject hazard = hazards [Random.Range (0, hazards.Length)];
-				Vector3 spawnPosition = new Vector3 (Random.Range (-spawnValues.x, spawnValues.x), spawnValues.y, spawnValues.z);
-				Quaternion spawnRotation = Quaternion.identity;
-				Instantiate (hazard, spawnPosition, spawnRotation);
-				yield return new WaitForSeconds (spawnWait);
-			}
-			yield return new WaitForSeconds (waveWait);
+		_textCountdown.gameObject.SetActive(true);
 
-			if (gameOver)
-			{
-				restartText.text = "Press 'R' for Restart";
-				restart = true;
-				break;
-			}
-		}
+		_textCountdown.text = "3";
+		yield return new WaitForSeconds(1.0f);
+
+		_textCountdown.text = "2";
+		yield return new WaitForSeconds(1.0f);
+
+		_textCountdown.text = "1";
+		yield return new WaitForSeconds(1.0f);
+
+		_textCountdown.text = "GO!";
+		yield return new WaitForSeconds(1.0f);
+
+		_textCountdown.text = "";
+		_textCountdown.gameObject.SetActive(false);
+		EnemyInstance ei = this.GetComponent<EnemyInstance>();
+		ei.StartMeteo();
 	}
-*/
+
 	public void AddScore (int newScoreValue)
 	{
 		score += newScoreValue;
+		sound01.PlayOneShot(sound01.clip);
 		UpdateScore ();
 	}
 
@@ -74,6 +81,7 @@ public class GameControler : MonoBehaviour
 	public void Damage ()
 	{
 		life -= 1;
+		sound02.PlayOneShot(sound02.clip);
 		UpdateLife ();
 		if(life <= 0){
 			GameOver ();
