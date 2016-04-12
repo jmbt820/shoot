@@ -3,7 +3,6 @@ using System.Collections;
 
 public class Enemy : MonoBehaviour
 {
-
 	private GameObject player;
 	private GameObject gameControler;
 	int defence = 2;
@@ -25,10 +24,10 @@ public class Enemy : MonoBehaviour
 			gameControler.GetComponent<GameControler>().Damage();
 			Destroy(gameObject);
 		} else if (other.gameObject.layer == 10) {//layer = 10: attack
-			defence -= 1;
+			defence--;
 			if(defence <= 0){
-				Destroy(gameObject);
 				gameControler.GetComponent<GameControler>().AddScore (10);
+				Destroy(gameObject);
 			}
 		}
 	}
