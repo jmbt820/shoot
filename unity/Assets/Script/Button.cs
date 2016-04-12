@@ -11,7 +11,7 @@ public class Button : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		standName = "centerN"; //現在の立ち位置 =　北向き
+		standName = "centerN"; 
 		eventsystem = GameObject.Find("EventSystem").GetComponent<EventSystem>();
 	}
 

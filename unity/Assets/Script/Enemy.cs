@@ -5,20 +5,31 @@ public class Enemy : MonoBehaviour
 {
 
 	private GameObject player;
-
+	private GameObject gameControler;
+	int defence = 2;
 	private void Start()
 	{
 		player = GameObject.Find("Player");
+		Destroy (gameObject, 11f);
+		gameControler = GameObject.Find("GameControler");
 	}
-
 	private void Update()
 	{
-		iTween.MoveTo(gameObject, player.transform.position, 10f); 
+		if (player) {
+			iTween.MoveTo(gameObject, player.transform.position, 10f); 
+		}
 	}
 
-	void OnCollisionEnter(Collision other) {
-		if(other.gameObject.layer == 8){ //layer = 8:player
-			Destroy (other.gameObject);	
+	private void OnCollisionEnter(Collision other) {
+		if (other.gameObject.layer == 8) { //layer = 8:player
+			gameControler.GetComponent<GameControler>().Damage();
+			Destroy(gameObject);
+		} else if (other.gameObject.layer == 10) {//layer = 10: attack
+			defence -= 1;
+			if(defence <= 0){
+				Destroy(gameObject);
+				gameControler.GetComponent<GameControler>().AddScore (10);
+			}
 		}
 	}
 }
