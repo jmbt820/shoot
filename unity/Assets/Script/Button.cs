@@ -8,72 +8,25 @@ public class Button : MonoBehaviour {
 
 	public EventSystem eventsystem; 
 	public string standName; 
+	public int nowRotation;
 
 	// Use this for initialization
 	void Start () {
-		standName = "centerN"; 
+	//	standName = "centerN"; 
 		eventsystem = GameObject.Find("EventSystem").GetComponent<EventSystem>();
+		nowRotation = 0;
 	}
 
 	// Update is called once per frame
 	void Update () {
 	}
-
-	public void turnL () {
-		switch(standName){
-		case "centerN":
-			iTween.RotateTo(GameObject.Find("Player"),iTween.Hash(
-				"x",0, "y",270, "z",0, "time", 0.4, "islocal", true
-			));
-			standName = "centerW";
-			break;
-		case "centerW":
-			iTween.RotateTo(GameObject.Find("Player"),iTween.Hash(
-				"x",0, "y",180, "z",0, "time", 0.4, "islocal", true
-			));
-			standName = "centerS";
-			break;
-		case "centerS":
-			iTween.RotateTo(GameObject.Find("Player"),iTween.Hash(
-				"x",0, "y",90, "z",0, "time", 0.4, "islocal", true
-			));
-			standName = "centerE";
-			break;
-		case "centerE":
-			iTween.RotateTo(GameObject.Find("Player"),iTween.Hash(
-				"x",0, "y",0, "z",0, "time", 0.4, "islocal", true
-			));
-			standName = "centerN";
-			break;
-		}
+		
+	void turnL(){
+		nowRotation -= 45;
+		iTween.RotateTo(GameObject.Find("Player"),iTween.Hash("y", nowRotation, "time", 0.4f));
 	}
-
-	public void turnR () {
-		switch(standName){
-		case "centerN":
-			iTween.RotateTo(GameObject.Find("Player"),iTween.Hash(
-				"x",0, "y",90, "z",0, "time", 0.4, "islocal", true
-			));
-			standName = "centerE";
-			break;
-		case "centerW":
-			iTween.RotateTo(GameObject.Find("Player"),iTween.Hash(
-				"x",0, "y",0, "z",0, "time", 0.4, "islocal", true
-			));
-			standName = "centerN";
-			break;
-		case "centerS":
-			iTween.RotateTo(GameObject.Find("Player"),iTween.Hash(
-				"x",0, "y",270, "z",0, "time", 0.4, "islocal", true
-			));
-			standName = "centerW";
-			break;
-		case "centerE":
-			iTween.RotateTo(GameObject.Find("Player"),iTween.Hash(
-				"x",0, "y",180, "z",0, "time", 0.4, "islocal", true
-			));
-			standName = "centerS";
-			break;
-		}
+	void turnR(){
+		nowRotation += 45;
+		iTween.RotateTo(GameObject.Find("Player"),iTween.Hash("y", nowRotation, "time", 0.4f));
 	}
 }

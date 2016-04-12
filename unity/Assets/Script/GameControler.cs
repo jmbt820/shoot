@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameControler : MonoBehaviour
 {
@@ -25,15 +26,14 @@ public class GameControler : MonoBehaviour
 
 	void Update ()
 	{
-		if (gameOver)
-		{
-			if (Input.GetKeyDown (KeyCode.R))
-			{
-				Time.timeScale = 1;
-				Application.LoadLevel("main");
+		if (gameOver) {
+			if (Input.touchCount == 1) {
+					Time.timeScale = 1;
+					SceneManager.LoadScene ("main");
 			}
 		}
 	}
+
 
 	/*
 	IEnumerator SpawnWaves ()
