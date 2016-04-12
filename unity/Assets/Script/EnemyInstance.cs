@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EnemyInstanse : MonoBehaviour {
+public class EnemyInstance : MonoBehaviour {
 
 	public GameObject meteor;
 	public GameObject player;
@@ -13,10 +13,10 @@ public class EnemyInstanse : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		player = GameObject.Find("Player");
-		StartCoroutine ("createMeteor");
+		StartCoroutine ("CreateMeteor");
 	}
 		
-	private IEnumerator createMeteor(){
+	private IEnumerator CreateMeteor(){
 		while(true){
 		Instantiate (meteor, GetPosition (radius), transform.rotation);
 		yield return new WaitForSeconds (interval);

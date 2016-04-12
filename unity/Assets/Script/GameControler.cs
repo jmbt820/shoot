@@ -4,43 +4,38 @@ using UnityEngine.UI;
 
 public class GameControler : MonoBehaviour
 {
-	//public GameObject[] hazards;
-	//public Vector3 spawnValues;
-	//public int hazardCount;
-//	public float spawnWait;
-//	public float startWait;
-//	public float waveWait;
-
 	public Text scoreText;
-//	public GUIText restartText;
+	public Text lifeText;
 	public Text gameOverText;
-
 	private bool gameOver;
-	private bool restart;
 	private int score;
+	private int life;
 
 	void Start ()
 	{
 		gameOver = false;
-	//	restart = false;
-	//	restartText.text = "";
+		lifeText.text = "";
 		gameOverText.text = "";
 		score = 0;
+		life = 3;
 		UpdateScore ();
+		UpdateLife ();
 	//	StartCoroutine (SpawnWaves ());
 	}
-	/*
+
 	void Update ()
 	{
-		if (restart)
+		if (gameOver)
 		{
 			if (Input.GetKeyDown (KeyCode.R))
 			{
-				Application.LoadLevel (Application.loadedLevel);
+				Time.timeScale = 1;
+				Application.LoadLevel("main");
 			}
 		}
 	}
 
+	/*
 	IEnumerator SpawnWaves ()
 	{
 		yield return new WaitForSeconds (startWait);
@@ -76,9 +71,27 @@ public class GameControler : MonoBehaviour
 		scoreText.text = "SCORE: " + score;
 	}
 
+	public void Damage ()
+	{
+		life -= 1;
+		UpdateLife ();
+		if(life <= 0){
+			GameOver ();
+		}
+	}
+
+	void UpdateLife ()
+	{
+		lifeText.text = "LIFE:";
+		for(int lifepoint = life; lifepoint > 0; lifepoint--){
+			lifeText.text += "☆ ";
+		}
+	}
+
 	public void GameOver ()
 	{
-		gameOverText.text = "Game Over!";
+		gameOverText.text = "GAME OVER";
 		gameOver = true;
+		Time.timeScale = 0;
 	}
 }

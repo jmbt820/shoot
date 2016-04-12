@@ -6,7 +6,7 @@ public class Enemy : MonoBehaviour
 
 	private GameObject player;
 	private GameObject gameControler;
-	int diffence = 2;
+	int defence = 2;
 	private void Start()
 	{
 		player = GameObject.Find("Player");
@@ -22,10 +22,11 @@ public class Enemy : MonoBehaviour
 
 	private void OnCollisionEnter(Collision other) {
 		if (other.gameObject.layer == 8) { //layer = 8:player
-			Destroy (other.gameObject);	
+			gameControler.GetComponent<GameControler>().Damage();
+			Destroy(gameObject);
 		} else if (other.gameObject.layer == 10) {//layer = 10: attack
-			diffence -= 1;
-			if(diffence <= 0){
+			defence -= 1;
+			if(defence <= 0){
 				Destroy(gameObject);
 				gameControler.GetComponent<GameControler>().AddScore (10);
 			}
