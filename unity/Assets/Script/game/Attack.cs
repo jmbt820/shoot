@@ -27,15 +27,8 @@ public class Attack : MonoBehaviour {
 			break;
 
 		case 1:
-			if (interval >= 1.0f) {
+			if (interval >= 4f) {
 				Instantiate (laser, new Vector3 (transform.position.x, transform.position.y, transform.position.z), transform.rotation);
-				interval = 0f;
-			}
-			break;
-
-		case 2:
-			if (interval >= 3.0f) {
-				Instantiate (missile, new Vector3 (transform.position.x, transform.position.y, transform.position.z), transform.rotation);
 				interval = 0f;
 			}
 			break;

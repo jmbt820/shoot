@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour
 		Destroy (gameObject, 11f);
 		gameControler = GameObject.Find("GameControler");
 	}
+
 	private void Update()
 	{
 		if (player) {
@@ -25,10 +26,20 @@ public class Enemy : MonoBehaviour
 			Destroy(gameObject);
 		} else if (other.gameObject.layer == 10) {//layer = 10: attack
 			defence--;
+			Destroy(other.gameObject);
 			if(defence <= 0){
 				gameControler.GetComponent<GameControler>().AddScore (10);
+				Destroy(other.gameObject);
 				Destroy(gameObject);
 			}
+		}
+	}
+
+	private void OnTriggerExit (Collider other)
+	{
+		if (other.gameObject.layer == 10) {
+				gameControler.GetComponent<GameControler> ().AddScore (10);
+				Destroy (gameObject);
 		}
 	}
 }

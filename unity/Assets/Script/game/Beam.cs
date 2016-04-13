@@ -12,14 +12,6 @@ public class Beam : MonoBehaviour {
 	}
 	// Update is called once per frame
 	void Update () {
-		
 		transform.Translate(0, 0, lazarSpeed);
 	}
-	/*
-	void OnCollisionEnter(Collision enemyCol) {
-		if(enemyCol.gameObject.layer == 9){ //layer = enemy
-			Destroy (gameObject);	
-		}
-}
-*/
 }
