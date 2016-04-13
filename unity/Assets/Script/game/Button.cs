@@ -15,12 +15,12 @@ public class Button : MonoBehaviour {
 		nowRotation = 0;
 	}
 		
-	void TurnL(){
+	public void TurnL(){
 		nowRotation -= 45;
 		iTween.RotateTo(GameObject.Find("Player"),iTween.Hash("y", nowRotation, "time", 0.4f));
 	}
 
-	void TurnR(){
+	public void TurnR(){
 		nowRotation += 45;
 		iTween.RotateTo(GameObject.Find("Player"),iTween.Hash("y", nowRotation, "time", 0.4f));
 	}
