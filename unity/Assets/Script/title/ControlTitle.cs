@@ -10,6 +10,7 @@ public class ControlTitle : MonoBehaviour {
 	public EventSystem eventsystem; 
 	public GameObject ranking;
 	public Text rankText;
+	int[] scoreArray = new int[5];
 
 	// Use this for initialization
 	void Start () {
@@ -17,8 +18,8 @@ public class ControlTitle : MonoBehaviour {
 		ranking.gameObject.SetActive(false);
 		eventsystem = GameObject.Find("EventSystem").GetComponent<EventSystem>();
 		for(int i = 0; i < 5; i++) {
-			rankText.GetComponent<Text>().text += (i + 1) + ":" + PlayerPrefs.GetInt("Result" + (i
-				+ 1)) + "\n";
+			scoreArray[i] = PlayerPrefs.GetInt("Result" + (i+ 1));
+			rankText.GetComponent<Text>().text += (i + 1) + ":" + scoreArray[i] + "\n";
 		}
 	}
 
@@ -35,7 +36,7 @@ public class ControlTitle : MonoBehaviour {
 	}
 
 	public void SNSButton(){
-		SocialConnector.Share ("あなたのスコアは○点です！!", "#spaceshoot");
+		SocialConnector.Share ("あなたのスコアは" + scoreArray[0]+ "点です！!", "#spaceshoot");
 	}
 }
 

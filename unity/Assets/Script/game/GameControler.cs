@@ -8,7 +8,7 @@ public class GameControler : MonoBehaviour
 	public Text scoreText;
 	public Text lifeText;
 	public Text gameOverText;
-	private bool gameOver;
+	static public bool gameOver;
 	private int score;
 	private int life;
 	private AudioSource sound01;
