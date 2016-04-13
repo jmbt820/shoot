@@ -16,6 +16,7 @@ public class GameControler : MonoBehaviour
 	[SerializeField]
 	private Text _textCountdown;
 	GameObject meteor;
+	int[] scoreArray = new int[5];
 
 	void Start ()
 	{
@@ -31,7 +32,9 @@ public class GameControler : MonoBehaviour
 		UpdateLife ();
 		_textCountdown.text = "";
 		StartCoroutine(CountdownCoroutine());
-
+		for(int i = 0;i < 5; i++) {
+			scoreArray[i] = PlayerPrefs.GetInt("Result" + (i + 1), 0);
+		}
 	}
 
 	void Update ()
@@ -39,7 +42,7 @@ public class GameControler : MonoBehaviour
 		if (gameOver) {
 			if (Input.touchCount == 1) {
 					Time.timeScale = 1;
-					SceneManager.LoadScene ("main");
+					SceneManager.LoadScene ("title");
 			}
 		}
 	}
@@ -101,5 +104,25 @@ public class GameControler : MonoBehaviour
 		gameOverText.text = "GAME OVER";
 		gameOver = true;
 		Time.timeScale = 0;
+		checkScore ();
+	}
+
+	public void checkScore() {
+		int nowScore = score;
+		for(int i = 0; i < 4; i++) {
+			if(scoreArray[i] < nowScore) {
+				if(i != 4) {
+					for(int j = 4; j > i; j--) {
+						scoreArray[j] = scoreArray[j - 1];
+					}
+				}
+				scoreArray[i] = (int)nowScore;
+				break;
+			}
+		}
+		for(int i = 0;i < 5;i++) {
+			PlayerPrefs.SetInt("Result" + (i + 1), scoreArray[i]);
+			Debug.Log("scoreArray[" + i + "]:" + scoreArray[i]);
+		}
 	}
 }
