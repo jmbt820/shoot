@@ -14,16 +14,13 @@ public class Button : MonoBehaviour {
 		eventsystem = GameObject.Find("EventSystem").GetComponent<EventSystem>();
 		nowRotation = 0;
 	}
-
-	// Update is called once per frame
-	void Update () {
-	}
 		
-	void turnL(){
+	void TurnL(){
 		nowRotation -= 45;
 		iTween.RotateTo(GameObject.Find("Player"),iTween.Hash("y", nowRotation, "time", 0.4f));
 	}
-	void turnR(){
+
+	void TurnR(){
 		nowRotation += 45;
 		iTween.RotateTo(GameObject.Find("Player"),iTween.Hash("y", nowRotation, "time", 0.4f));
 	}
